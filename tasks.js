@@ -33,6 +33,7 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+var list =[ 'mariam', 'female',  21]
 function onDataReceived(text) {
   // text = text.replace("\n","")
   if (text === 'quit\n'  || text==='exit\n') {
@@ -43,6 +44,9 @@ function onDataReceived(text) {
   }
   else if(text==='help\n'){
     help();
+  }
+  else if(text==='list\n'){
+    listM();
   }
     else {unknownCommand(text);
   }
@@ -91,6 +95,11 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+function listM(){
+
+}
+
+
 
 // The following line starts the application
 startApp("mariam")
