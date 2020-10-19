@@ -67,7 +67,7 @@ function unknownCommand(c){
  * @returns {void}
  */
 function hello(text){
-  text = text.replace("\n","");
+  text = text.replace("\n", "");
   console.log(text + '!')
 }
 /**
@@ -76,7 +76,10 @@ function hello(text){
  * @returns {void}
  */
 function  help(){
-  console.log('hello  print hello  quit   can exit  in the file ')
+  console.log('hello  print hello  ')
+  console.log('quit exit from page ')
+  console.log('name put user name ')
+console.log( 'help   can help you ')
 }
 /**
  * Exits the application
