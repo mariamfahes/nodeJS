@@ -34,6 +34,7 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+  // text = text.replace("\n","")
   if (text === 'quit\n'  || text==='exit\n') {
     quit();
   }
@@ -66,7 +67,8 @@ function unknownCommand(c){
  * @returns {void}
  */
 function hello(text){
-  console.log(text)
+  text = text.replace("\n","");
+  console.log(text + '!')
 }
 /**
  * list the application
