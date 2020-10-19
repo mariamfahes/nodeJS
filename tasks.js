@@ -68,16 +68,20 @@ function unknownCommand(c){
 function hello(){
   console.log('hello!')
 }
-
-
+/**
+ * list the application
+ *
+ * @returns {void}
+ */
+function  help(){
+  console.log('hello  print hello  quit   can exit  in the file ')
+}
 /**
  * Exits the application
  *
  * @returns {void}
  */
-function  help(){
-  console.log('can help')
-}
+
 function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
