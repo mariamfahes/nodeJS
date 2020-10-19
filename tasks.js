@@ -47,6 +47,11 @@ function onDataReceived(text) {
   }
   else if(text==='list\n'){
     listM();
+  
+  }
+  else if(text==='add\n'){
+    add();
+  
   }
     else {unknownCommand(text);
   }
@@ -96,6 +101,10 @@ function quit(){
   process.exit();
 }
 function listM(){
+console.log(list)
+}
+function add(){
+  list.push("nabiteh")
 
 }
 
