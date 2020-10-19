@@ -53,6 +53,9 @@ function onDataReceived(text) {
     add();
   
   }
+  else if(text==='remove\n' || text.startsWith('remove ')){
+    remove(text);
+  }
     else {unknownCommand(text);
   }
 }
@@ -104,7 +107,21 @@ function listM(){
 console.log(list)
 }
 function add(){
-  list.push("nabiteh")
+  list.push("nabatieh")
+
+}
+function remove(text){
+text=text.trim();
+if(text.length==6){list.pop()}
+else{
+  let num = text.split(' ');
+  let c = parseInt(num[1]-1);
+  if(c <0 || c >= list.length){console.log('doesnt exist')}
+  else{
+  x = list.splice(c, 1)
+  console.log(list)
+}
+}
 
 }
 
