@@ -92,6 +92,7 @@ function  help(){
   console.log('quit exit from page ')
   console.log('name put user name ')
 console.log( 'help   can help you ')
+console.log('remove    remove  validation' )
 }
 /**
  * Exits the application
