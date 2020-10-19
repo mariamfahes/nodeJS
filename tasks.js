@@ -113,7 +113,11 @@ function add(){
 }
 function remove(text){
 text=text.trim();
-if(text.length==6){list.pop()}
+if(text<0||text>list.length){
+  console.log("doesnt exit")
+
+}
+else if(text.length==6){list.pop()}
 else{
   let num = text.split(' ');
   let c = parseInt(num[1]-1);
