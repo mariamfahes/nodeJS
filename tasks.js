@@ -76,7 +76,7 @@ function hello(text){
  * @returns {void}
  */
 function  help(){
-  console.log('hello  print hello  ')
+  console.log('hello  print hello  and text  ')
   console.log('quit exit from page ')
   console.log('name put user name ')
 console.log( 'help   can help you ')
