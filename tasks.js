@@ -33,7 +33,7 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-var list =[ 'mariam', 'female',  21]
+var list =[ ]
 function onDataReceived(text) {
   // text = text.replace("\n","")
   if (text === 'quit\n'  || text==='exit\n') {
@@ -45,12 +45,12 @@ function onDataReceived(text) {
   else if(text==='help\n'){
     help();
   }
-  else if(text==='list\n'){
+  else if(text.startsWith("list")){
     listM();
   
   }
-  else if(text==='add\n'){
-    add();
+  else if(text.startsWith("add ")){
+    add(text);
   
   }
   else if(text==='remove\n' || text.startsWith('remove ')){
@@ -59,6 +59,12 @@ function onDataReceived(text) {
   else if( text.split(" ")[0] === 'edit' ||text==='edit\n'){
     edit(text);
   
+  }
+  else if(text.startsWith("check ")){
+    check(text);
+  }
+  else if(text.startsWith("uncheck ")){
+    uncheck(text);
   }
     else {unknownCommand(text);
   }
@@ -111,8 +117,9 @@ function quit(){
 function listM(){
 console.log(list)
 }
-function add(){
-  list.push("nabatieh")
+function add(text){
+  text = text.trim();
+  list.push(["",text.substring(4).trim()]);
 
 }
 function edit(text){
@@ -121,7 +128,7 @@ function edit(text){
   }
   else if (text.split(" ")[1].trim() == "new"){
     list.pop();
-    list.push([text.trim().split(" ").slice(2).join(" "), '[ ]'])
+    list.push("", [text.trim().split(" ").slice(2).join(" ")])
     console.log("change last items")
   }
   else if (!isNaN(text.split(" ")[1].trim())){
@@ -130,6 +137,14 @@ function edit(text){
   }else {
     console.log("doesnot exist " )
 }
+}
+function check(text){
+  text = text.split(" ");
+  list[text[1]-1][0] = '✓';
+}
+function uncheck(text){
+  text = text.split(" ");
+  list[text[1]-1][0] = '';
 }
 function remove(text){
 text=text.trim();
@@ -149,6 +164,7 @@ else{
 }
 
 }
+
 
 
 
