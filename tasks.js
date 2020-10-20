@@ -34,6 +34,9 @@ function startApp(name){
  * @returns {void}
  */
 var list =[ ]
+const fs = require('fs');
+var path="./database.json";
+var  path="./test.json"
 function onDataReceived(text) {
   // text = text.replace("\n","")
   if (text === 'quit\n'  || text==='exit\n') {
@@ -113,8 +116,37 @@ console.log ('help check and uncheck')
 
 function quit(){
   console.log('Quitting now, goodbye!')
-  process.exit();
+  fs.open(path, 'w', function(err,fd) {
+    if (err){
+      throw 'could not open file :'+err;
+    }
+    fs.appendFileSync(path,'{\n\t"list": [\n');
+    for(let i=0;i<list.length;i++){
+      fs.appendFileSync(path,'\t\t{\n\t\t\t"address" : "'+list[i][1]+"\",\n");
+      if(list[i][0]=="")
+      fs.appendFileSync(path,'\t\t\t"checked" : false\n');
+      else
+      fs.appendFileSync(path,'\t\t\t"checked" : true\n');
+      if(i==list.length-1)
+      fs.appendFileSync(path,"\t\t}\n");
+      else
+      fs.appendFileSync(path,"\t\t},\n")
+      
+    }
+    fs.appendFileSync(path,'\t]\n}\n');
+    
+    fs.close(fd,function(){
+      process.exit();
+
+    });
+
+
+
+
+  });
+
 }
+
 function listM(){
 console.log(list)
 }
@@ -156,14 +188,38 @@ if(text<0||text>list.length){
 else if(text.length==6){list.pop()}
 else{
   let num = text.split(' ');
-  let c = parseInt(num[1]-1);
-  if(c <0 || c >= list.length){console.log('doesnt exist')}
+  let o = parseInt(num[1]-1);
+  if(o <0 || o >= list.length){
+    console.log('doesnt exist')}
   else{
-  x = list.splice(c, 1)
+  x = list.splice(o, 1)
   console.log(list)
 }
 }
+}
+function start(){
+  var c = process.argv.slice(2);
+  if(typeof(c[0])!="undefined"){
+    path ="./"+c[0];
+  }
+var v ;
+fs.readFile(path,'utf8',(err,data) => {
+  try{
+  v = JSON.parse(data);
+  for(let i = 0;i<v.list.length;i++){
+    if(v.list[i].checked){
+      list.push(["✓",v.list[i].address]);
+    }
+    else{
+      list.push(["",v.list[i].address]);
+    }
 
+  }
+}
+catch(e){
+
+}
+});
 }
 
 
@@ -171,3 +227,4 @@ else{
 
 // The following line starts the application
 startApp("mariam")
+start();
