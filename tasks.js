@@ -56,6 +56,10 @@ function onDataReceived(text) {
   else if(text==='remove\n' || text.startsWith('remove ')){
     remove(text);
   }
+  else if( text.split(" ")[0] === 'edit' ||text==='edit\n'){
+    edit(text);
+  
+  }
     else {unknownCommand(text);
   }
 }
@@ -110,6 +114,22 @@ console.log(list)
 function add(){
   list.push("nabatieh")
 
+}
+function edit(text){
+  if(text.trim() === "edit"){
+    console.log("error" )
+  }
+  else if (text.split(" ")[1].trim() == "new"){
+    list.pop();
+    list.push([text.trim().split(" ").slice(2).join(" "), '[ ]'])
+    console.log("change last items")
+  }
+  else if (!isNaN(text.split(" ")[1].trim())){
+    list[list.split(" ")[1].trim()-1][0] = list.trim().split(" ").slice(3).join(" ");
+    console.log("chaned");
+  }else {
+    console.log("doesnot exist " )
+}
 }
 function remove(text){
 text=text.trim();
