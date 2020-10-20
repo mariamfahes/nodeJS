@@ -103,6 +103,7 @@ function  help(){
   console.log('name put user name ')
 console.log( 'help   can help you ')
 console.log('remove    remove  validation' )
+console.log ('help check and uncheck')
 }
 /**
  * Exits the application
